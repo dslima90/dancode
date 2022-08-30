@@ -1,0 +1,83 @@
+{
+  "name": "dancode",
+  "displayName": "dancode",
+  "publisher": "DSLima90",
+  "description": "Commands for personal use",
+  "version": "0.0.2",
+  "type": "commonjs",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:dancode.sinonimos"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "dancode.sinonimos",
+        "title": "Acha sinonimos"
+      }
+    ],
+    "menus": {
+        "editor/context": [
+            {
+                "command": "dancode.sinonimos",
+                "when": "editorHasSelection",
+                "title": "sinonimos,"
+            }
+        ]
+    },    
+    "keybindings": [
+        {
+            "key": "Alt+Shift+S",
+            "command": "dancode.sinonimos",
+            "when": "editorHasSelection"
+        },
+        {
+            "key": "ctrl+shift+B",
+            "command": "editor.action.insertSnippet",
+            "when": "editorLangId == latex && editorTextFocus",
+            "args": {
+                "snippet": "\\textbf{${TM_SELECTED_TEXT}$0}"
+            }
+        },
+        {
+            "key": "ctrl+shift+I",
+            "command": "editor.action.insertSnippet",
+            "when": "editorLangId == latex && editorTextFocus", 
+            "args": {
+                "snippet": "\\textit{${TM_SELECTED_TEXT}$0}"
+            }
+        }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.70.0",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.20.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@types/node-fetch": "^2.6.2",
+    "node-fetch": "^2.6.1"
+  }
+}
